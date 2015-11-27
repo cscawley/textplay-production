@@ -8,7 +8,7 @@
 # Textplay was built using Mac OS 10.6-10 and Ruby 1.8-2.0. I have only
 # tested it in this environment, if you want to run Textplay in another
 # environment (such as Windows) you may have to modify the code.
-# 
+#
 # TEXTPLAY LICENSE
 #
 # Textplay is free software, available under a BSD-style
@@ -47,9 +47,9 @@
 # ---------------------------------------------------------------------
 
 # HOW TEXTPLAY WORKS
-# 
+#
 # This script works on your text in 5 phases:
-# 
+#
 # Phase 1 allows the user to define conversion options on the command-line.
 # Phase 2 looks for something that looks like fountain title pages,
 #         and sets variables based on key/value pairs
@@ -187,7 +187,7 @@ be customized:
     * title (text) -- default: \"A Screenplay\"
 
       You can define what name textplay uses when generating files.
- 
+
     * goldman_sluglines (on/off) -- default: on
 
       By default textplay interprets any line that's all-caps as a
@@ -204,7 +204,7 @@ be customized:
       <http://quoteunquoteapps.com/courierprime/>
       a great alternative font for screenwriters. If you don't have that
       installed plain Courier will be used.
-  
+
       If you'd like to specify your own font, Courier Prime and Courier
       will be used as backup fonts.
 
@@ -258,7 +258,7 @@ The block of key/value pairs:
      1 empty line. 2 empty lines will cause textplay to stop parsing
      for options.
 
-For more details see the Fountain documentation 
+For more details see the Fountain documentation
 <http://fountain.io/syntax#section-titlepage>.
 "
 
@@ -270,7 +270,7 @@ For more details see the Fountain documentation
 # check to see if anything is in SDTIN
 if STDIN.fcntl(Fcntl::F_GETFL, 0) == 0
   # if so, read it
-  text = STDIN.read 
+  text = STDIN.read
 else
   # if nothing is check for --help and send help text to less
   if options[:help] == true
@@ -601,6 +601,7 @@ prince-bookmark-level: none;
 
 body {
 font-family: \"#{font}\", courier;
+background: #fff;
 font-size: 12pt;
 line-height: 1;
 }
@@ -620,6 +621,9 @@ margin-left:0;
 padding-right:.25in;
 width:6in;
 white-space: #{wrap_paragraphs};
+}
+a:hover {
+  color: #1e1a1b;
 }
 
 /*Character Names*/
@@ -837,7 +841,7 @@ text = text.gsub(/^[ \t]*=[ \t]*(.*)/, "\n" + '<note>\1</note>' + "\n")
 
 if screenbundle_comments == "on"
   # Textplay/Screenbundle comments
-  text = text.gsub(/^[ \t]*\/\/\s?(.*)$/,  "\n" + '<note>\1</note>' + "\n")  
+  text = text.gsub(/^[ \t]*\/\/\s?(.*)$/,  "\n" + '<note>\1</note>' + "\n")
 end
 
 # And since Sections, Synopses, and Screenbundle  are non-printing,
@@ -880,7 +884,7 @@ text = text.gsub(/
 
 # The 2 search/replaces below, Standard and Escaped dialogue blocks,
 # wrap the entire dialogue block in a wrapper. This allows much simpler
-# regular expressions inside those blocks. 
+# regular expressions inside those blocks.
 
 # ESCAPED DIALOGUE BLOCKS
 text = text.gsub(/
@@ -1070,7 +1074,7 @@ if options[:fdx] == true
 elsif options[:xml] == true
   text = text
 else
-  # default HTML formatting  
+  # default HTML formatting
   text = text.gsub(/<note>/, '<p class="comment">')
   text = text.gsub(/<\/note>/, '</p>')
   text = text.gsub(/<meta_block>(.|\n)+?<\/meta_block>/, '<!--\0-->')
